@@ -35,9 +35,13 @@ const scoreCounterTable = document.getElementById('score')
 let score = 0 ;
 
 // # MILESTONE 2 numeri random bombe
+let bomb = [];
+for (let i = 0; i < 16; i++) {
+    bomb.push( Math.floor((Math.random() * 100) + 1)) 
+   
+}
 
-
-
+console.log(bomb)
 
 // azzerare la griglia
 grid.innerHTML = '';
