@@ -20,6 +20,8 @@
 // Quando la partita termina dobbiamo capire se è terminata perchè è stata cliccata una bomba o se perchè l'utente ha raggiunto il punteggio massimo. Dobbiamo poi stampare in pagina il punteggio raggiunto ed il messaggio adeguato in caso di vittoria o sconfitta.
 
 
+// funzioni
+
 
 
 const grid = document.getElementById('grid')
@@ -35,10 +37,17 @@ const scoreCounterTable = document.getElementById('score')
 let score = 0 ;
 
 // # MILESTONE 2 numeri random bombe
+// bombe e numeri estratti
+let NumeriCliccati = [];
 let bomb = [];
+
 for (let i = 0; i < 16; i++) {
-    bomb.push( Math.floor((Math.random() * 100) + 1)) 
-   
+    let bombNum = Math.floor((Math.random() * 100) + 1)
+    if (!bomb.includes(bombNum)) {
+        bomb.push(bombNum)
+    }else{
+        i--
+    }
 }
 
 console.log(bomb)
@@ -47,7 +56,8 @@ console.log(bomb)
 grid.innerHTML = '';
 
 playBtn.addEventListener('click', function () {
-
+    playBtn.innerText = "";
+    playBtn.innerText = "Rigioca"
     score = 0
     scoreCounterTable.innerText = "il tuo punteggio è: " +  score;
     // azzerare la griglia
@@ -67,15 +77,19 @@ playBtn.addEventListener('click', function () {
             if(cell.classList.contains("clicked")) return;
             cell.classList.add('clicked')
             cell.innerText = '';
-            // console.log(i)
+            console.log(i)
+            NumeriCliccati.push(i)
+            // console.log(NumeriCliccati)
+            
             // # MILESTONE 1 punteggio
             score = score + 1;
-            console.log(score)
+            // console.log(score)
             scoreCounterTable.innerText = "il tuo punteggio è: " +  score;
             
         })
         
     }
+    
 })
 
 
