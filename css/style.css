@@ -42,6 +42,11 @@ header{
 }
 
 .clicked {
-    background-color: lightblue;
     cursor: not-allowed;
+}
+.safe{
+    background-color: green;
+}
+.bomb{
+    background-color: red;
 }

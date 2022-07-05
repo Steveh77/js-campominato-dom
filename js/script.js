@@ -23,7 +23,6 @@
 // funzioni
 
 
-
 const grid = document.getElementById('grid')
 
 // creazione celle
@@ -35,6 +34,8 @@ const playBtn = document.getElementById('btn-play')
 // # MILESTONE 1 punteggio
 const scoreCounterTable = document.getElementById('score')
 let score = 0 ;
+
+
 
 // # MILESTONE 2 numeri random bombe
 // bombe e numeri estratti
@@ -51,6 +52,12 @@ for (let i = 0; i < 16; i++) {
 }
 
 console.log(bomb)
+
+
+    
+
+// punteggio massimo
+const winningPoints = gridCells - bomb ;
 
 // azzerare la griglia
 grid.innerHTML = '';
@@ -76,13 +83,24 @@ playBtn.addEventListener('click', function () {
             // MILESTONE 1 Se arrivi qui e non è presente la classe "clicked" puoi proseguire
             if(cell.classList.contains("clicked")) return;
             cell.classList.add('clicked')
-            cell.innerText = '';
+            
             console.log(i)
             NumeriCliccati.push(i)
             // console.log(NumeriCliccati)
             
-            // # MILESTONE 1 punteggio
-            score = score + 1;
+            // controllo
+            if(bomb.includes(parseInt(cell.innerText))){
+                cell.classList.add('bomb')
+                alert(`hai perso, hai totalizzato ${score} punti`)
+            } else{
+                cell.classList.add('safe')
+                score++;
+                if(score === 84){
+                    alert(`hai vinto , hai totalizzato ${score} punti`)
+                }
+            }
+            cell.innerText = '';
+            
             // console.log(score)
             scoreCounterTable.innerText = "il tuo punteggio è: " +  score;
             
